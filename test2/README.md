@@ -3,15 +3,15 @@
 
 ```sql
 $ sqlplus system/123@pdborcl
-SQL> CREATE ROLE accountw;
+SQL> CREATE ROLE ab;
 Role created.
-SQL> GRANT connect,resource,CREATE VIEW TO accountw;
+SQL> GRANT connect,resource,CREATE VIEW TO ab;
 Grant succeeded.
-SQL> CREATE USER new_user IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+SQL> CREATE USER abc IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
 User created.
-SQL> ALTER USER account QUOTA 50M ON users;
+SQL> ALTER USER abc QUOTA 50M ON users;
 User altered.
-SQL> GRANT accountw TO account;
+SQL> GRANT ab TO abc;
 Grant succeeded.
 SQL> exit
 ```
@@ -22,7 +22,7 @@ SQL> exit
 ```sql
 $ sqlplus account/123@pdborcl
 SQL> show user;
-USER is "NEW_USER"
+USER is "abc"
 SQL> CREATE TABLE mytable (id number,name varchar(50));
 Table created.
 SQL> INSERT INTO mytable(id,name)VALUES(1,'zhang');
@@ -45,7 +45,7 @@ SQL>exit
 
 ```sql
 $ sqlplus hr/123@pdborcl
-SQL> SELECT * FROM account.myview;
+SQL> SELECT * FROM abc.myview;
 NAME
 --------------------------------------------------
 zhang
